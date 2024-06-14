@@ -30,7 +30,7 @@ router.post('/', async (req, res) => {
   });
 
   try {
-    const newBooks = await Books.save();
+    const newBooks = await books.save();
     res.status(201).json(newBooks);
   } catch (err) {
     res.status(400).json({ message: err.message });
