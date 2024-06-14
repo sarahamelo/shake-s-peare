@@ -5,7 +5,7 @@ const Books = require('../models/books');
 // Rota para obter todos os livros
 router.get('/', async (req, res) => {
   try {
-    const books = await Books.find();
+    const Books = await Books.find();
     res.json(books);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
 
 // Rota para obter um livro por ID
 router.get('/:id', getBooks, (req, res) => {
-  res.json(res.books);
+  res.json(res.Books);
 });
 
 // Rota para criar um livro contato
@@ -30,7 +30,7 @@ router.post('/', async (req, res) => {
   });
 
   try {
-    const newBooks = await books.save();
+    const newBooks = await Books.save();
     res.status(201).json(newBooks);
   } catch (err) {
     res.status(400).json({ message: err.message });
@@ -40,29 +40,29 @@ router.post('/', async (req, res) => {
 // Rota para atualizar um livro por ID
 router.put('/:id', getBooks, async (req, res) => {
   if (req.body.title != null) {
-    res.books.title = req.body.title;
+    res.Books.title = req.body.title;
   }
   if (req.body.author != null) {
-    res.books.author = req.body.author;
+    res.Books.author = req.body.author;
   }
   if (req.body.pages != null) {
-    res.books.pages = req.body.pages;
+    res.Books.pages = req.body.pages;
   }
   if (req.body.description != null) {
-    res.books.description = req.body.description;
+    res.Books.description = req.body.description;
   }
   if (req.body.dateOfPublishment != null) {
-    res.books.dateOfPublishment = req.body.dateOfPublishment;
+    res.Books.dateOfPublishment = req.body.dateOfPublishment;
   }
   if (req.body.editor != null) {
-    res.books.editor = req.body.editor;
+    res.Books.editor = req.body.editor;
   }
   if (req.body.rating != null) {
-    res.books.rating = req.body.rating;
+    res.Books.rating = req.body.rating;
   }
 
   try {
-    const updatedBooks = await res.books.save();
+    const updatedBooks = await res.Books.save();
     res.json(updatedBooks);
   } catch (err) {
     res.status(400).json({ message: err.message });
@@ -72,7 +72,7 @@ router.put('/:id', getBooks, async (req, res) => {
 // Rota para excluir um livro por ID
 router.delete('/:id', getBooks, async (req, res) => {
   try {
-    await res.books.deleteOne();
+    await res.Books.deleteOne();
     res.json({ message: 'Book deleted sucessfully' });
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -81,11 +81,11 @@ router.delete('/:id', getBooks, async (req, res) => {
 
 async function getBooks(req, res, next) {
   try {
-    const books = await Books.findById(req.params.id);
-    if (books == null) {
+    const Books = await Books.findById(req.params.id);
+    if (Books == null) {
       return res.status(404).json({ message: 'Book not found' });
     }
-    res.books = books;
+    res.Books = Books;
     next();
   } catch (err) {
     return res.status(500).json({ message: err.message });
