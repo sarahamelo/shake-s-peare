@@ -5,7 +5,7 @@ const Books = require('../models/books');
 // Rota para obter todos os livros
 router.get('/', async (req, res) => {
   try {
-    const Books = await Books.find();
+    const books = await Books.find();
     res.json(books);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -81,11 +81,11 @@ router.delete('/:id', getBooks, async (req, res) => {
 
 async function getBooks(req, res, next) {
   try {
-    const Books = await Books.findById(req.params.id);
-    if (Books == null) {
+    const books = await Books.findById(req.params.id);
+    if (books == null) {
       return res.status(404).json({ message: 'Book not found' });
     }
-    res.Books = Books;
+    res.Books = books;
     next();
   } catch (err) {
     return res.status(500).json({ message: err.message });
