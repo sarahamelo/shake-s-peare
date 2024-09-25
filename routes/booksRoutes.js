@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Books = require('../models/books');
+const { ObjectId } = require('mongodb');
 
 // Rota para obter todos os livros
 router.get('/', async (req, res) => {
@@ -85,7 +86,7 @@ router.delete('/:id', getBooks, async (req, res) => {
 
 async function getBooks(req, res, next) {
   try {
-    const books = await Books.findById(req.params.id);
+    const books = await Books.findById(ObjectId(req.params.id));
     if (books == null) {
       return res.status(404).json({ message: 'Book not found' });
     }
