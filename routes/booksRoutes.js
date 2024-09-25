@@ -86,7 +86,7 @@ router.delete('/:id', getBooks, async (req, res) => {
 
 async function getBooks(req, res, next) {
   try {
-    const books = await Books.findById(ObjectId(req.params.id));
+    const books = await Books.findById(new ObjectId(req.params.id));
     if (books == null) {
       return res.status(404).json({ message: 'Book not found' });
     }
