@@ -27,6 +27,7 @@ router.post('/', async (req, res) => {
     dateOfPublishment: req.body.dateOfPublishment,
     editor: req.body.editor,
     rating: req.body.rating,
+    cover: req.body.cover,
   });
 
   try {
@@ -59,6 +60,9 @@ router.put('/:id', getBooks, async (req, res) => {
   }
   if (req.body.rating != null) {
     res.Books.rating = req.body.rating;
+  }
+  if (req.body.rating != null) {
+    res.Books.cover = req.body.cover;
   }
 
   try {
