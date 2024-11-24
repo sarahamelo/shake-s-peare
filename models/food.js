@@ -21,8 +21,12 @@ const foodSchema = new Schema({
     type: [String],
     required: true,
   },
+  image: {
+    type: String,
+    required: true
+  }
 }, { collection: "comidinhas" });
 
-const Food = model("Comidinha", foodSchema);
+const Food = model("Comidinha", foodSchema, "comidinhas");
 
 module.exports = Food;

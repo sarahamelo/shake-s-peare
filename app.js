@@ -17,6 +17,7 @@ app.use("/food", foodRouter);
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  dbName: "Shake-sPeare"
 });
 
 const db = mongoose.connection;

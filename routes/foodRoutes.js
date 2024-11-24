@@ -6,7 +6,7 @@ const mongodb = require("mongodb");
 
 router.get("/", (req, res) => {
   Food.find()
-    .then(res.json)
+    .then(f => res.json(f))
     .catch((err) => res.status(500).json({ message: err.message }));
 });
 
@@ -56,6 +56,7 @@ router.post("/", (req, res) => {
     price: req.body.price,
     description: req.body.description,
     alergenics: req.body.alergenics,
+    image: req.body.image
   });
 
   food
@@ -66,7 +67,7 @@ router.post("/", (req, res) => {
 
 // Rota para atualizar um livro por ID
 router.put("/:id", getFood, (req, res) => {
-  const requiredFields = ["name", "type", "price", "description", "alergenics"];
+  const requiredFields = ["name", "type", "price", "description", "alergenics", "image"];
   requiredFields.sort();
 
   const keys = Object.keys(req.body);

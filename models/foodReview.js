@@ -23,6 +23,6 @@ const commentSchema = new mongoose.Schema(
   { collection: "comidinhasReview" }
 );
 
-const FoodReview = mongoose.model("comidinhasReviews", commentSchema);
+const FoodReview = mongoose.model("comidinhasReviews", commentSchema, "comidinhasReview");
 
 module.exports = FoodReview;

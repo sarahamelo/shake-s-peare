@@ -20,6 +20,6 @@ const commentSchema = new mongoose.Schema({
   },
 });
 
-const BookReview = mongoose.model("bookReviews", commentSchema);
+const BookReview = mongoose.model("bookReviews", commentSchema, "bookReviews");
 
 module.exports = BookReview;
