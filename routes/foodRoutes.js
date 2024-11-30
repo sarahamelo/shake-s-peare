@@ -97,13 +97,13 @@ router.delete("/:id", getFood, async (req, res) => {
 
 async function getFood(req, res, next) {
   try {
-    const books = await Food.findById(
+    const food = await Food.findById(
       mongodb.ObjectId.createFromHexString(req.params.id)
     );
-    if (books == null)
+    if (food == null)
       return res.status(404).json({ message: "Food not found" });
 
-    res.Books = books;
+    res.Food = food;
     next();
   } catch (err) {
     return res.status(500).json({ message: err.message });
